@@ -23,3 +23,7 @@
         iptables -D INPUT -i testbr -p udp --dport 67:68 --sport 67:68 -j ACCEPT
 
     fi
+
+- name: Recover /etc/resolv.conf file
+  shell: |
+    cp -f /etc/resolv.conf.bak /etc/resolv.conf

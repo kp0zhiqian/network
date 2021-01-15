@@ -27,6 +27,10 @@
     ip addr add 192.0.2.1/24 dev testbr
     ip -6 addr add 2001:DB8::1/32 dev testbr
 
+    # Backup resolv.conf file in case of dnsmasq overwrite it
+    # The file will recover it in remove_test_interfaces_with_dhcp.yml
+    cp /etc/resolv.conf /etc/resolv.conf.bak
+
     if grep 'release 6' /etc/redhat-release; then
         # We need bridge-utils and radvd only in rhel6
         if ! rpm -q --quiet radvd; then yum -y install radvd; fi
